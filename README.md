@@ -1,2 +1,2 @@
 # python_training_mantis
-Сontinuation of the course "Python Programming for Testers". Second part.
+Repository for continuation of the course "Python Programming for Testers". Second part.
