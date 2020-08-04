@@ -1,5 +1,7 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
+from fixture.project import ProjectHelper
+from selenium.webdriver.support.select import Select
 
 
 class Application:
@@ -17,6 +19,7 @@ class Application:
                raise ValueError("Unrecognized browser %s" % browser)
           self.wd.implicitly_wait(5) # t.k. stranica obnovlayetsay ne dinamicheski, to v etom priloghenii takoi neobhodimosti net. Alexei razreshil ostavit
           self.session = SessionHelper(self)
+          self.project = ProjectHelper(self)
           self.base_url = base_url
 
      def is_valid(self):
@@ -26,9 +29,15 @@ class Application:
           except:
                return False
 
+
      def open_home_page(self):
           wd = self.wd
           wd.get(self.base_url)
+
+     # def return_to_home_page(self):
+     #      wd = self.wd
+     #      wd.find_element_by_css_selector("a[href='my_view_page.php']").click()
+
 
      def destroy(self):
          self.wd.quit()

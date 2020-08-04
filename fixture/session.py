@@ -12,9 +12,9 @@ class SessionHelper:
           wd.find_element_by_name("username").clear()
           wd.find_element_by_name("username").send_keys(username)
           wd.find_element_by_name("password").click()
-          wd.find_element_by_name("password").clear()
+#          wd.find_element_by_name("password").clear()
           wd.find_element_by_name("password").send_keys(password)
-          wd.find_element_by_css_selector('input[type="submit"]').click()
+          wd.find_element_by_xpath("//input[@value='Login']").click()
 
      def logout(self):
           wd = self.app.wd
@@ -40,7 +40,7 @@ class SessionHelper:
      def ensure_login(self, username, password):
           wd = self.app.wd
           if self.is_logged_in():
-               if self.is_logged_in_as(username):
+               if self.is_logged_in_as(username): # проверяем что залогинились под нужным именем
                     return
                else:
                     self.logout()

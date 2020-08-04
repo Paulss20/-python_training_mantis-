@@ -4,6 +4,7 @@ import json
 import os.path
 import ftputil
 from fixture.application import Application
+import importlib
 
 fixture = None
 target = None
@@ -66,8 +67,16 @@ def stop(request):
      return fixture
 
 
+@pytest.fixture
+def check_ui(request):
+     return request.config.getoption("--check_ui")
+
+
 def pytest_addoption(parser):
      parser.addoption("--browser", action="store", default="firefox")
      parser.addoption("--target", action="store", default="target.json")
+     parser.addoption("--check_ui", action="store_true")
 
 
+def load_from_module(module):
+     return importlib.import_module("data.%s" % module).testdata
